@@ -69,36 +69,16 @@ open class IDCardOCR {
         
         guard let _ = numberNetwork , let _ = chineseNetwork else { return nil}
     }
-    
+    public func testCropImage(_ image:UIImage) -> UIImage{
+        return cropNumberImage(image)
+    }
     open func recognize(_ image: UIImage, completionHandler: @escaping CompletionHandler) {
         
         func indexToCharacter(_ index: Int) -> Character { return Array(recognizableCharacters.characters)[index] }
         
         DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async {
             
-            let ciImage = CIImage(image: image)!
-            
-            let detector = CIDetector(ofType: CIDetectorTypeFace, context: nil, options: nil)
-            
-            let features = detector?.features(in: ciImage)
-            
-            // 检测不到身份证上的头像
-            guard let faceFeature = features?.first as? CIFaceFeature else {
-                completionHandler("")
-                return
-            }
-            
-            // 头像不完整
-            guard faceFeature.hasLeftEyePosition && faceFeature.hasRightEyePosition && faceFeature.hasMouthPosition else {
-                completionHandler("")
-                return
-            }
-            
-            // 头像不正确
-            guard !faceFeature.leftEyeClosed && !faceFeature.rightEyeClosed else {
-                completionHandler("")
-                return
-            }
+            let numberImage = self.cropNumberImage(image);
             
             var number = ""
             var name = ""
@@ -116,9 +96,9 @@ open class IDCardOCR {
                 
                 DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async(group: group) {
                     
-                    let numberImage = self.cropNumberImage(image, faceBounds: faceFeature.bounds)
+                    let numberImage = self.cropNumberImage(image)
                     let blobs = self.extractBlobs(self.preprocessImage(numberImage))
-                    
+
                     blobs.forEach {
                         
                         let bolbData = self.convertImageToFloatArray($0.0)
@@ -138,7 +118,7 @@ open class IDCardOCR {
                                     numberRecognizedString.append(character)
                                     break
                                 }
-                                
+//                                debugPrint(numberRecognizedString)
                             }
                         } catch {
                             debugPrint(error)
@@ -147,20 +127,24 @@ open class IDCardOCR {
                 }
             }
             
-            // 中文信息
-            autoreleasepool {
-                
-                DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async(group: group) {
-                    
-                }
-            }
+            // 姓名
+//            autoreleasepool {
+//
+//            }
             
             group.wait(timeout: DispatchTime.distantFuture)
             
-            completionHandler("\(name), \(number)")
+            completionHandler("\(number)")
         }
     }
-    
+    func cropNumberImage(_ image:UIImage) -> UIImage {
+        let w = image.size.width * 0.6;
+        let x = image.size.width * 0.31;
+        let h = image.size.height * 0.14;
+        let y = image.size.height * 0.79;
+        
+        return image.crop(CGRect(x: x, y: y, width: w, height: h));
+    }
     func cropNumberImage(_ image: UIImage, faceBounds: CGRect) -> UIImage {
         
         // 这里的比例系数实根据身份证的比例，计算身份证号码所在位置
@@ -174,7 +158,7 @@ open class IDCardOCR {
     }
     func cropNameImage(_ image: UIImage) -> UIImage {
         
-        let w = image.size.width / 2
+        let w = image.size.width * 0.15
         let h = image.size.height * 0.14
         
         let x = image.size.width * 0.16

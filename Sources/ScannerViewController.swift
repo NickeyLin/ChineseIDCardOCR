@@ -236,12 +236,15 @@ open class ScannerViewController: UIViewController {
                     height: interestRect.size.height * image.size.height)
 
                 let croppedImage = image.crop(rect) // 身份证完整的图片
-                self.imageView.image = croppedImage;
-                self.view.addSubview(self.imageView);
+//                self.imageView.image = self.ocr?.cropNameImage(croppedImage);
+//                self.imageView.sizeToFit()
+//                self.view.addSubview(self.imageView);
                 
                 self.ocr?.recognize(croppedImage) {
-                    if $0.lengthOfBytes(using: String.Encoding.utf8) == 18 {
-                        let number = $0
+                    debugPrint($0)
+                    let result = $0
+                    if result.lengthOfBytes(using: String.Encoding.utf8) == 18 {
+                        let number = result
                         DispatchQueue.main.async {
                             self.didRecognizedHandler?(IDCard(number: number, image: croppedImage))
                         }
