@@ -21,7 +21,7 @@ public struct IDCard {
 }
 
 
-public class ScannerViewController: UIViewController {
+open class ScannerViewController: UIViewController {
 
     @IBOutlet weak var focusView: FocusView!
     @IBOutlet weak var maskView: UIView!
@@ -30,31 +30,33 @@ public class ScannerViewController: UIViewController {
     @IBOutlet weak var waittingIndicator: UIActivityIndicatorView!
 
     // default 0.75
-    @IBOutlet private weak var focusViewWidthLayoutConstraint: NSLayoutConstraint?
+    @IBOutlet fileprivate weak var focusViewWidthLayoutConstraint: NSLayoutConstraint?
 
+    let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 160, height: 100))
+    
     let captureSession = AVCaptureSession()
-    let device = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
+    let device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
     let output = AVCaptureStillImageOutput()
 
     let ocr = IDCardOCR()
 
     var observer: AnyObject?
-    var repeatTimer: NSTimer?
+    var repeatTimer: Timer?
     var recognizing = false
 
     var previewLayer: AVCaptureVideoPreviewLayer!
 
-    public var didRecognizedHandler: (IDCard -> ())?
+    open var didRecognizedHandler: ((IDCard) -> ())?
 
     public init() {
-        super.init(nibName: "ScannerViewController", bundle: NSBundle.ocrBundle())
+        super.init(nibName: "ScannerViewController", bundle: Bundle.ocrBundle())
     }
     
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
 
         adjustfocusViewWidth()
@@ -76,23 +78,23 @@ public class ScannerViewController: UIViewController {
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         previewLayer.frame = view.layer.bounds
         previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
-        previewLayer.connection.videoOrientation = .LandscapeRight
+        previewLayer.connection.videoOrientation = .landscapeRight
 
         view.layer.insertSublayer(previewLayer, below: maskView.layer)
 
-        focusView.layer.borderColor = UIColor.whiteColor().CGColor
+        focusView.layer.borderColor = UIColor.white.cgColor
         focusView.layer.borderWidth = 0.5
         focusView.layer.cornerRadius = 4
-        focusView.hidden = true
+        focusView.isHidden = true
 
 
 
-        let image = UIImage(named: "icon_close", inBundle: NSBundle.ocrBundle(), compatibleWithTraitCollection: nil)?.imageWithRenderingMode(.AlwaysTemplate)
-        closeButton.tintColor = UIColor.whiteColor()
-        closeButton.setImage(image, forState: .Normal)
-        closeButton.hidden = true
+        let image = UIImage(named: "icon_close", in: Bundle.ocrBundle(), compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+        closeButton.tintColor = UIColor.white
+        closeButton.setImage(image, for: UIControlState())
+        closeButton.isHidden = true
 
-        tipLabel.hidden = true
+        tipLabel.isHidden = true
 
         addNotification()
     }
@@ -101,37 +103,37 @@ public class ScannerViewController: UIViewController {
         removeNotification()
     }
 
-    override public func viewDidAppear(animated: Bool) {
+    override open func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
         captureSession.startRunning()
     }
 
-    override public func viewWillDisappear(animated: Bool) {
+    override open func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
         captureSession.stopRunning()
     }
 
-    override public func viewDidLayoutSubviews() {
+    override open func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         previewLayer.frame = view.layer.bounds
         if let _ = maskView.layer.mask { refreshMask() }
     }
 
-    @IBAction func touchClose(sender: UIButton) {
+    @IBAction func touchClose(_ sender: UIButton) {
 
         captureSession.stopRunning()
         focusView.stopScaningAnimation()
 
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
 
     // MARK: focus view layoutConstraint
-    private func adjustfocusViewWidth() {
+    fileprivate func adjustfocusViewWidth() {
 
-        let screenWidth = UIApplication.sharedApplication().statusBarOrientation == .LandscapeRight ?
-                          UIScreen.mainScreen().bounds.height : UIScreen.mainScreen().bounds.size.width
+        let screenWidth = UIApplication.shared.statusBarOrientation == .landscapeRight ?
+                          UIScreen.main.bounds.height : UIScreen.main.bounds.size.width
 
         var multiplier: CGFloat = 0.75
 
@@ -149,7 +151,7 @@ public class ScannerViewController: UIViewController {
             focusView.removeConstraint(c)
         }
 
-        let layout = NSLayoutConstraint(item: focusView, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: multiplier, constant: 0.0)
+        let layout = NSLayoutConstraint(item: focusView, attribute: .width, relatedBy: .equal, toItem: view, attribute: .width, multiplier: multiplier, constant: 0.0)
         view.addConstraint(layout)
         focusViewWidthLayoutConstraint = layout
 
@@ -157,66 +159,66 @@ public class ScannerViewController: UIViewController {
     }
 
     // MARK: Notification
-    private func addNotification() {
-
-        observer = NSNotificationCenter.defaultCenter().addObserverForName(AVCaptureSessionDidStartRunningNotification, object: nil, queue: nil) { [weak self] _ in
+    fileprivate func addNotification() {
+        
+        observer = NotificationCenter.default.addObserver(forName: NSNotification.Name.AVCaptureSessionDidStartRunning, object: nil, queue: nil) { [weak self] _ in
             guard let sSelf = self else { return }
             sSelf.refreshMask()
-
+            
             // 开始准备获取图片
-            sSelf.repeatTimer = NSTimer.schedule(repeatInterval: 0.5) { [weak sSelf] in
-                sSelf?.captureImage($0)
+            sSelf.repeatTimer = Timer.schedule(repeatInterval: 0.5) { timer in
+                sSelf.captureImage(timer!)
             }
-
+            
             //
-            sSelf.focusView.hidden = false
+            sSelf.focusView.isHidden = false
             sSelf.focusView.startScaningAnimation()
-
+            
             //
-            sSelf.closeButton.hidden = false
-
+            sSelf.closeButton.isHidden = false
+            
             //
-            sSelf.tipLabel.hidden = false
-
+            sSelf.tipLabel.isHidden = false
+            
             //
             sSelf.waittingIndicator.stopAnimating()
         }
     }
 
-    private func refreshMask() {
+    fileprivate func refreshMask() {
 
         let path = UIBezierPath(rect: view.bounds)
         let focus = UIBezierPath(roundedRect: focusView.frame, cornerRadius: 4)
 
-        path.appendPath(focus.bezierPathByReversingPath())
+        path.append(focus.reversing())
 
         let maskLayer = CAShapeLayer()
-        maskLayer.path = path.CGPath
+        maskLayer.path = path.cgPath
 
         maskView.layer.mask = maskLayer
     }
 
-    private func removeNotification() {
+    fileprivate func removeNotification() {
 
         guard let o = observer else { return }
         
-        NSNotificationCenter.defaultCenter().removeObserver(o)
+        NotificationCenter.default.removeObserver(o)
     }
 
-    private func captureImage(timer: NSTimer) {
+    fileprivate func captureImage(_ timer: Timer) {
 
         // the camera's focus is stable.
-        guard !device.adjustingFocus else { return }
+        guard !(device?.isAdjustingFocus)! else { return }
         guard !recognizing else { return }
 
         recognizing = true
 
         // 获取图片
-        let settings = AVCaptureManualExposureBracketedStillImageSettings.manualExposureSettingsWithExposureDuration(device.exposureDuration, ISO: device.ISO)
-        let stillImageConnection = output.connectionWithMediaType(AVMediaTypeVideo)
-            stillImageConnection.videoOrientation = .LandscapeRight
+        let settings = AVCaptureManualExposureBracketedStillImageSettings.manualExposureSettings(withExposureDuration: (device?.exposureDuration)!, iso: (device?.iso)!)
+        let stillImageConnection = output.connection(withMediaType: AVMediaTypeVideo)
+            stillImageConnection?.videoOrientation = .landscapeRight
 
-        output.captureStillImageBracketAsynchronouslyFromConnection(stillImageConnection, withSettingsArray: [settings], completionHandler: { (buffer, settings, error) in
+        output.captureStillImageBracketAsynchronously(from: stillImageConnection, withSettingsArray: [settings], completionHandler: { (buffer, settings, error) in
 
             guard buffer != nil else {
                 self.recognizing = false
@@ -224,9 +226,9 @@ public class ScannerViewController: UIViewController {
             }
             
             let imgData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(buffer)
-            if let image = UIImage(data: imgData) {
+            if let image = UIImage(data: imgData!) {
 
-                let interestRect = self.previewLayer.metadataOutputRectOfInterestForRect(self.focusView.frame)
+                let interestRect = self.previewLayer.metadataOutputRectOfInterest(for: self.focusView.frame)
 
                 let rect = CGRect(x: interestRect.origin.x * image.size.width,
                     y: interestRect.origin.y * image.size.height,
@@ -234,11 +236,13 @@ public class ScannerViewController: UIViewController {
                     height: interestRect.size.height * image.size.height)
 
                 let croppedImage = image.crop(rect) // 身份证完整的图片
-
+                self.imageView.image = croppedImage;
+                self.view.addSubview(self.imageView);
+                
                 self.ocr?.recognize(croppedImage) {
-                    if $0.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) == 18 {
+                    if $0.lengthOfBytes(using: String.Encoding.utf8) == 18 {
                         let number = $0
-                        dispatch_async(dispatch_get_main_queue()) {
+                        DispatchQueue.main.async {
                             self.didRecognizedHandler?(IDCard(number: number, image: croppedImage))
                         }
                     }
@@ -249,19 +253,19 @@ public class ScannerViewController: UIViewController {
     }
 
     // MARK: override supper
-    override public func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override open var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
     
-    override public func preferredInterfaceOrientationForPresentation() -> UIInterfaceOrientation {
-        return .LandscapeRight
+    override open var preferredInterfaceOrientationForPresentation : UIInterfaceOrientation {
+        return .landscapeRight
     }
     
-    override public func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-        return .Landscape
+    override open var supportedInterfaceOrientations : UIInterfaceOrientationMask {
+        return .landscape
     }
     
-    override public func shouldAutorotate() -> Bool {
+    override open var shouldAutorotate : Bool {
         return false
     }
 }

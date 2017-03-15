@@ -29,7 +29,7 @@ import UIKit
 //    print("5 seconds")
 //}
 
-extension NSTimer {
+extension Timer {
     /**
      Creates and schedules a one-time `NSTimer` instance.
 
@@ -39,11 +39,12 @@ extension NSTimer {
 
      - Returns: The newly-created `NSTimer` instance.
      */
-    class func schedule(delay delay: NSTimeInterval, handler: NSTimer! -> Void) -> NSTimer {
+    class func schedule(delay: TimeInterval, handler: @escaping (_ timer:Timer?) -> Void) -> Timer {
         let fireDate = delay + CFAbsoluteTimeGetCurrent()
         let timer = CFRunLoopTimerCreateWithHandler(kCFAllocatorDefault, fireDate, 0, 0, 0, handler)
-        CFRunLoopAddTimer(CFRunLoopGetCurrent(), timer, kCFRunLoopCommonModes)
-        return timer
+        
+        CFRunLoopAddTimer(CFRunLoopGetCurrent(), timer, CFRunLoopMode.commonModes)
+        return timer!
     }
 
     /**
@@ -57,40 +58,83 @@ extension NSTimer {
 
      - Returns: The newly-created `NSTimer` instance.
      */
-    class func schedule(repeatInterval interval: NSTimeInterval, handler: NSTimer! -> Void) -> NSTimer {
+    class func schedule(repeatInterval interval: TimeInterval, handler: @escaping (_ timer:Timer?) -> Void) -> Timer {
         let fireDate = interval + CFAbsoluteTimeGetCurrent()
         let timer = CFRunLoopTimerCreateWithHandler(kCFAllocatorDefault, fireDate, interval, 0, 0, handler)
-        CFRunLoopAddTimer(CFRunLoopGetCurrent(), timer, kCFRunLoopCommonModes)
-        return timer
+        CFRunLoopAddTimer(CFRunLoopGetCurrent(), timer, CFRunLoopMode.commonModes)
+        return timer!
     }
 }
 
 extension UIImage {
 
-    func crop(rect: CGRect) -> UIImage {
+    func crop(_ rect: CGRect) -> UIImage {
 
-        guard let imageRef = CGImageCreateWithImageInRect(CGImage, rect) else {
+        guard let imageRef = cgImage?.cropping(to: rect) else {
             return self
         }
 
-        return UIImage(CGImage: imageRef, scale: scale, orientation: imageOrientation)
+        return UIImage(cgImage: imageRef, scale: scale, orientation: imageOrientation)
     }
 }
-
-extension Array where Element: _ArrayType, Element.Generator.Element: Any {
-
-    func transpose() -> [Element] {
-        if self.isEmpty { return [Element]() }
-        let count = self[0].count
-        var out = [Element](count: count, repeatedValue: Element())
-        for outer in self {
-            for (index, inner) in outer.enumerate() {
+extension Collection where Iterator.Element == [UInt16] {
+    func transpose() -> [[UInt16]] {
+        if self.isEmpty {
+            return [[UInt16]]();
+        }
+        let count = self.first?.count
+        var out = [[UInt16]](repeatElement([UInt16](), count: count!))
+        for outer in self{
+            for (index, inner) in outer.enumerated() {
                 out[index].append(inner)
             }
         }
         return out
     }
 }
+//extension Array where Element : Collection{
+//    func transpose() -> [Element] {
+//        if self.isEmpty {
+//            return [Element]();
+//        }
+//        let count = self[0].count;
+//        var out = [Element](repeatElement(Array<Any>(), count: count));
+//        for outer in self {
+//            for (index, inner) in outer.enumerated() {
+//                out[index].append(inner)
+//            }
+//        }
+//        return out;
+//    }
+//}
+//extension Array where Element : Array<Any> {
+//    func transpose() -> [Array<Any>] {
+//        if self.isEmpty { return [Element]() }
+//        let count = self[0].count
+//        var out = [Element](repeating: Element(), count: count)
+//        for outer in self {
+//            for (index, inner) in outer.enumerated() {
+//                out[index].append(inner)
+//            }
+//        }
+//        return out
+//    }
+//}
+
+//extension Array where Element: _ArrayType, Element.Iterator.Element: Any {
+//    
+//    func transpose() -> [Element] {
+//        if self.isEmpty { return [Element]() }
+//        let count = self[0].count
+//        var out = [Element](repeating: Element(), count: count)
+//        for outer in self {
+//            for (index, inner) in outer.enumerated() {
+//                out[index].append(inner)
+//            }
+//        }
+//        return out
+//    }
+//}
 
 extension String {
 
@@ -109,18 +153,18 @@ extension String {
         func validateIdCardLength() -> Bool {
             let reg = "^(\\d{14}|\\d{17})(\\d|[xX])$"
             let predicate = NSPredicate(format: "SELF MATCHES %@", reg)
-            return predicate.evaluateWithObject(self)
+            return predicate.evaluate(with: self)
         }
 
         func checkCode() -> Bool {
             let factor = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2]
             let codes = [1, 0, 10, 9, 8, 7, 6, 5, 4, 3, 2]
             var chs = characters; chs.removeLast()
-            let sum = chs.flatMap { Int(String($0)) }.enumerate().map { $0.element * factor[$0.index] }.reduce(0, combine: +)
+            let sum = chs.flatMap { Int(String($0)) }.enumerated().map { $0.element * factor[$0.offset] }.reduce(0, +)
             let code =  codes[sum % 11]
 
-            var lastStr = substringFromIndex(endIndex.advancedBy(-1))
-            if lastStr.lowercaseString == "x" { lastStr = "10" }
+            var lastStr = substring(from: characters.index(endIndex, offsetBy: -1))
+            if lastStr.lowercased() == "x" { lastStr = "10" }
 
             return code == (Int(lastStr) ?? -1)
         }
@@ -130,11 +174,11 @@ extension String {
     }
 }
 
-extension NSBundle {
+extension Bundle {
 
-    class func ocrBundle() -> NSBundle {
-        let assetPath = NSBundle(forClass: IDCardOCR.self).resourcePath!
-        return NSBundle(path: (assetPath as NSString).stringByAppendingPathComponent("ChineseIDCardOCR.bundle"))!
+    class func ocrBundle() -> Bundle {
+        let assetPath = Bundle(for: IDCardOCR.self).resourcePath!
+        return Bundle(path: (assetPath as NSString).appendingPathComponent("ChineseIDCardOCR.bundle"))!
     }
 
 }

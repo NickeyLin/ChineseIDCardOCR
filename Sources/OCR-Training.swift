@@ -14,14 +14,14 @@ class OCRTraining {
 
     let trainingBackgroundImage = UIImage(named: "idbackground")!
 
-    let documentsDirectory: NSURL = {
-        let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
+    let documentsDirectory: URL = {
+        let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return urls[urls.endIndex - 1]
     }()
 
     init() {}
 
-    func trainging(size: Int) {
+    func trainging(_ size: Int) {
 
         let errorThreshold = Float(2)
 
@@ -43,7 +43,7 @@ class OCRTraining {
 
     }
 
-    private func generateRealisticCharSet(size: Int) -> [([Float],[Float])] {
+    fileprivate func generateRealisticCharSet(_ size: Int) -> [([Float],[Float])] {
 
         var trainingSet = [([Float],[Float])]()
 
@@ -69,14 +69,14 @@ class OCRTraining {
             let bg = self.trainingBackgroundImage
 
             UIGraphicsBeginImageContext(bg.size)
-            bg.drawInRect(CGRect(origin: CGPoint.zero, size: bg.size))
+            bg.draw(in: CGRect(origin: CGPoint.zero, size: bg.size))
 
-            NSString(string: code).drawInRect(CGRect(origin: CGPointMake(15, 20), size: bg.size), withAttributes: [NSFontAttributeName: UIFont(name: "OCR-B 10 BT", size: 25)!])
+            NSString(string: code).draw(in: CGRect(origin: CGPoint(x: 15, y: 20), size: bg.size), withAttributes: [NSFontAttributeName: UIFont(name: "OCR-B 10 BT", size: 25)!])
 
             let customImage = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
 
-            return customImage
+            return customImage!
         }
 
         for _ in 0 ..< size {
@@ -96,8 +96,8 @@ class OCRTraining {
 
                     let imageData = ocr.convertImageToFloatArray(blob.0)
 
-                    var imageAnswer = [Float](count: recognizableCharacters.characters.count, repeatedValue: 0)
-                    if let index = Array(recognizableCharacters.characters).indexOf(Array(code.characters)[blobIndex]) {
+                    var imageAnswer = [Float](repeating: 0, count: recognizableCharacters.characters.count)
+                    if let index = Array(recognizableCharacters.characters).index(of: Array(code.characters)[blobIndex]) {
                         imageAnswer[index] = 1
                     }
 
@@ -113,7 +113,7 @@ class OCRTraining {
         globalNetwork.writeToFile(url())
     }
 
-    func url() -> NSURL {
-        return documentsDirectory.URLByAppendingPathComponent("OCR-Network")
+    func url() -> URL {
+        return documentsDirectory.appendingPathComponent("OCR-Network")
     }
 }

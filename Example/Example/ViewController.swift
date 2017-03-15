@@ -11,19 +11,19 @@ import ChineseIDCardOCR
 
 class ViewController: UIViewController {
 
-    @IBOutlet private weak var imageView: UIImageView!
-    @IBOutlet private weak var numberLabel: UILabel!
+    @IBOutlet fileprivate weak var imageView: UIImageView!
+    @IBOutlet fileprivate weak var numberLabel: UILabel!
 
-    @IBAction func tap(sender: UIButton) {
+    @IBAction func tap(_ sender: UIButton) {
 
         let vc = ScannerViewController()
 
         var errorSum = 0
 
-        func fill(card: IDCard) {
+        func fill(_ card: IDCard) {
             imageView.image = card.image
             numberLabel.text = card.number
-            vc.dismissViewControllerAnimated(true, completion: nil)
+            vc.dismiss(animated: true, completion: nil)
         }
 
         vc.didRecognizedHandler = {
@@ -43,10 +43,10 @@ class ViewController: UIViewController {
             fill($0)
         }
 
-        presentViewController(vc, animated: true, completion: nil)
+        present(vc, animated: true, completion: nil)
     }
 
-    @IBAction func recoginzeLocalImage(sender: UIButton) {
+    @IBAction func recoginzeLocalImage(_ sender: UIButton) {
 
         let ocr = IDCardOCR()!
 
@@ -58,7 +58,7 @@ class ViewController: UIViewController {
 
         ocr.recognize(image) {
             let number = $0
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 self.numberLabel.text = number
             }
         }
