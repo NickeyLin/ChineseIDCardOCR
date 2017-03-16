@@ -92,49 +92,6 @@ extension Collection where Iterator.Element == [UInt16] {
         return out
     }
 }
-//extension Array where Element : Collection{
-//    func transpose() -> [Element] {
-//        if self.isEmpty {
-//            return [Element]();
-//        }
-//        let count = self[0].count;
-//        var out = [Element](repeatElement(Array<Any>(), count: count));
-//        for outer in self {
-//            for (index, inner) in outer.enumerated() {
-//                out[index].append(inner)
-//            }
-//        }
-//        return out;
-//    }
-//}
-//extension Array where Element : Array<Any> {
-//    func transpose() -> [Array<Any>] {
-//        if self.isEmpty { return [Element]() }
-//        let count = self[0].count
-//        var out = [Element](repeating: Element(), count: count)
-//        for outer in self {
-//            for (index, inner) in outer.enumerated() {
-//                out[index].append(inner)
-//            }
-//        }
-//        return out
-//    }
-//}
-
-//extension Array where Element: _ArrayType, Element.Iterator.Element: Any {
-//    
-//    func transpose() -> [Element] {
-//        if self.isEmpty { return [Element]() }
-//        let count = self[0].count
-//        var out = [Element](repeating: Element(), count: count)
-//        for outer in self {
-//            for (index, inner) in outer.enumerated() {
-//                out[index].append(inner)
-//            }
-//        }
-//        return out
-//    }
-//}
 
 extension String {
 
