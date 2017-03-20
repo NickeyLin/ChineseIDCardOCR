@@ -85,7 +85,7 @@
 
 /* Begin PBXFileReference section */
 		0A2CD1441D685FB400FF9B71 /* OCR-B 10 BT.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OCR-B 10 BT.ttf"; sourceTree = "<group>"; };
-		0A92639B1D6461A200FDC253 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A92639B1D6461A200FDC253 /* CardOCRDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardOCRDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A92639E1D6461A200FDC253 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A9263A01D6461A200FDC253 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0A9263A31D6461A200FDC253 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -126,7 +126,7 @@
 		0A92639C1D6461A200FDC253 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0A92639B1D6461A200FDC253 /* Example.app */,
+				0A92639B1D6461A200FDC253 /* CardOCRDemo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -178,9 +178,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0A92639A1D6461A200FDC253 /* Example */ = {
+		0A92639A1D6461A200FDC253 /* CardOCRDemo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0A9263AD1D6461A200FDC253 /* Build configuration list for PBXNativeTarget "Example" */;
+			buildConfigurationList = 0A9263AD1D6461A200FDC253 /* Build configuration list for PBXNativeTarget "CardOCRDemo" */;
 			buildPhases = (
 				0A9263971D6461A200FDC253 /* Sources */,
 				0A9263981D6461A200FDC253 /* Frameworks */,
@@ -193,9 +193,9 @@
 				0A9263D41D6461CE00FDC253 /* PBXTargetDependency */,
 				0A9263D91D6461D500FDC253 /* PBXTargetDependency */,
 			);
-			name = Example;
+			name = CardOCRDemo;
 			productName = Example;
-			productReference = 0A92639B1D6461A200FDC253 /* Example.app */;
+			productReference = 0A92639B1D6461A200FDC253 /* CardOCRDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -206,7 +206,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0730;
-				ORGANIZATIONNAME = Kevin.Gong;
+				ORGANIZATIONNAME = Nick.Lean;
 				TargetAttributes = {
 					0A92639A1D6461A200FDC253 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -216,7 +216,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 0A9263961D6461A200FDC253 /* Build configuration list for PBXProject "Example" */;
+			buildConfigurationList = 0A9263961D6461A200FDC253 /* Build configuration list for PBXProject "CardOCRDemo" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -239,7 +239,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				0A92639A1D6461A200FDC253 /* Example */,
+				0A92639A1D6461A200FDC253 /* CardOCRDemo */,
 			);
 		};
 /* End PBXProject section */
@@ -457,7 +457,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0A9263961D6461A200FDC253 /* Build configuration list for PBXProject "Example" */ = {
+		0A9263961D6461A200FDC253 /* Build configuration list for PBXProject "CardOCRDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0A9263AB1D6461A200FDC253 /* Debug */,
@@ -466,7 +466,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0A9263AD1D6461A200FDC253 /* Build configuration list for PBXNativeTarget "Example" */ = {
+		0A9263AD1D6461A200FDC253 /* Build configuration list for PBXNativeTarget "CardOCRDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0A9263AE1D6461A200FDC253 /* Debug */,
