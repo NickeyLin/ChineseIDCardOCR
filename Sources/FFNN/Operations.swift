@@ -10,7 +10,7 @@ import Accelerate
 // MARK: Vector operators
 
 /// Vector negation (negates each element of the receiver).
-prefix func - (m: Vector) -> Vector {
+public prefix func - (m: Vector) -> Vector {
     var n = [Double](repeating: 0.0, count: m.size)
     vDSP_vnegD(m.flat, 1, &n, 1, vDSP_Length(m.size))
     let v = Vector(size: m.size)
@@ -19,7 +19,7 @@ prefix func - (m: Vector) -> Vector {
 }
 
 /// Vector addition.
-func + (lhs: Vector, rhs: Vector) -> Vector {
+public func + (lhs: Vector, rhs: Vector) -> Vector {
     var s = [Double](repeating: 0.0, count: lhs.size)
     vDSP_vaddD(lhs.flat, 1, rhs.flat, 1, &s, 1, vDSP_Length(lhs.size))
     let v = Vector(size: lhs.size)
@@ -28,7 +28,7 @@ func + (lhs: Vector, rhs: Vector) -> Vector {
 }
 
 /// Vector subtraction.
-func - (lhs: Vector, rhs: Vector) -> Vector {
+public func - (lhs: Vector, rhs: Vector) -> Vector {
     var s = [Double](repeating: 0.0, count: lhs.size)
     vDSP_vsubD(rhs.flat, 1, lhs.flat, 1, &s, 1, vDSP_Length(lhs.size))
     let v = Vector(size: lhs.size)
@@ -37,7 +37,7 @@ func - (lhs: Vector, rhs: Vector) -> Vector {
 }
 
 /// Element-wise vector addition.
-func + (lhs: Vector, rhs: Double) -> Vector {
+public func + (lhs: Vector, rhs: Double) -> Vector {
     var scalar = rhs
     var s = [Double](repeating: 0.0, count: lhs.size)
     vDSP_vsaddD(lhs.flat, 1, &scalar, &s, 1, vDSP_Length(lhs.size))
@@ -47,7 +47,7 @@ func + (lhs: Vector, rhs: Double) -> Vector {
 }
 
 /// Element-wise vector subtraction.
-func - (lhs: Vector, rhs: Double) -> Vector {
+public func - (lhs: Vector, rhs: Double) -> Vector {
     var s = [Double](repeating: 0.0, count: lhs.size)
     var scalar = -rhs
     vDSP_vsaddD(lhs.flat, 1, &scalar, &s, 1, vDSP_Length(lhs.size))
@@ -57,7 +57,7 @@ func - (lhs: Vector, rhs: Double) -> Vector {
 }
 
 /// Element-wise vector multiplication.
-func * (lhs: Vector, rhs: Double) -> Vector {
+public func * (lhs: Vector, rhs: Double) -> Vector {
     var s = [Double](repeating: 0.0, count: lhs.size)
     var scalar = -rhs
     vDSP_vsmulD(lhs.flat, 1, &scalar, &s, 1, vDSP_Length(lhs.size))
@@ -67,7 +67,7 @@ func * (lhs: Vector, rhs: Double) -> Vector {
 }
 
 /// Element-wise vector division.
-func / (lhs: Vector, rhs: Double) -> Vector {
+public func / (lhs: Vector, rhs: Double) -> Vector {
     var s = [Double](repeating: 0.0, count: lhs.size)
     var scalar = -rhs
     vDSP_vsdivD(lhs.flat, 1, &scalar, &s, 1, vDSP_Length(lhs.size))
@@ -80,7 +80,7 @@ func / (lhs: Vector, rhs: Double) -> Vector {
 // MARK: Matrix operators
 
 /// Matrix negation.
-prefix func - (m: Matrix) -> Matrix {
+public prefix func - (m: Matrix) -> Matrix {
     let v = -m.flat
     let mat = Matrix(rows: m.rows, columns: m.columns)
     mat.flat = v
@@ -88,7 +88,7 @@ prefix func - (m: Matrix) -> Matrix {
 }
 
 /// Matrix addition.
-func + (lhs: Matrix, rhs: Matrix) -> Matrix {
+public func + (lhs: Matrix, rhs: Matrix) -> Matrix {
     assert(lhs.rows == rhs.rows && lhs.columns == rhs.columns, "Matrix sizes don't match")
     let v1 = lhs.flat
     let v2 = rhs.flat
@@ -98,7 +98,7 @@ func + (lhs: Matrix, rhs: Matrix) -> Matrix {
 }
 
 /// Matrix subtraction.
-func - (lhs: Matrix, rhs: Matrix) -> Matrix {
+public func - (lhs: Matrix, rhs: Matrix) -> Matrix {
     assert(lhs.rows == rhs.rows && lhs.columns == rhs.columns, "Matrix sizes don't match")
     let v1 = lhs.flat
     let v2 = rhs.flat
@@ -108,7 +108,7 @@ func - (lhs: Matrix, rhs: Matrix) -> Matrix {
 }
 
 /// Matrix multiplication.
-func * (lhs: Matrix, rhs: Matrix) -> Matrix {
+public func * (lhs: Matrix, rhs: Matrix) -> Matrix {
     assert(lhs.columns == rhs.rows, "Matrix sizes don't match")
     let v1 = lhs.flat.flat
     let v2 = rhs.flat.flat
@@ -120,7 +120,7 @@ func * (lhs: Matrix, rhs: Matrix) -> Matrix {
 }
 
 /// Element-wise matrix addition.
-func + (lhs: Matrix, rhs: Double) -> Matrix {
+public func + (lhs: Matrix, rhs: Double) -> Matrix {
     let v = lhs.flat + rhs
     let mat = Matrix(rows: lhs.rows, columns: lhs.columns)
     mat.flat = v
@@ -128,7 +128,7 @@ func + (lhs: Matrix, rhs: Double) -> Matrix {
 }
 
 /// Element-wise matrix subtraction.
-func - (lhs: Matrix, rhs: Double) -> Matrix{
+public func - (lhs: Matrix, rhs: Double) -> Matrix{
     let v = lhs.flat-rhs
     let mat = Matrix(rows: lhs.rows, columns: lhs.columns)
     mat.flat = v
@@ -136,7 +136,7 @@ func - (lhs: Matrix, rhs: Double) -> Matrix{
 }
 
 /// Element-wise matrix multiplication.
-func * (lhs: Matrix, rhs: Double) -> Matrix{
+public func * (lhs: Matrix, rhs: Double) -> Matrix{
     let v = lhs.flat*rhs
     let mat = Matrix(rows: lhs.rows, columns: lhs.columns)
     mat.flat = v
@@ -144,7 +144,7 @@ func * (lhs: Matrix, rhs: Double) -> Matrix{
 }
 
 /// Element-wise matrix division.
-func / (lhs: Matrix, rhs: Double) -> Matrix{
+public func / (lhs: Matrix, rhs: Double) -> Matrix{
     let v = lhs.flat/rhs
     let mat = Matrix(rows: lhs.rows, columns: lhs.columns)
     mat.flat = v

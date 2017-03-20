@@ -7,7 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0A2CD0CB1D66BD3800FF9B71 /* Test.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A2CD0C91D66BD3300FF9B71 /* Test.png */; };
+		01CA36991E7F7B0C00A335CD /* FFNN+Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CA36911E7F7B0C00A335CD /* FFNN+Storage.swift */; };
+		01CA369A1E7F7B0C00A335CD /* FFNN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CA36921E7F7B0C00A335CD /* FFNN.swift */; };
+		01CA369B1E7F7B0C00A335CD /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CA36931E7F7B0C00A335CD /* Matrix.swift */; };
+		01CA369C1E7F7B0C00A335CD /* Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CA36941E7F7B0C00A335CD /* Operations.swift */; };
+		01CA369D1E7F7B0C00A335CD /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CA36951E7F7B0C00A335CD /* Random.swift */; };
+		01CA369E1E7F7B0C00A335CD /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 01CA36961E7F7B0C00A335CD /* README.md */; };
+		01CA369F1E7F7B0C00A335CD /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CA36971E7F7B0C00A335CD /* Storage.swift */; };
+		01CA36A01E7F7B0C00A335CD /* Vector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CA36981E7F7B0C00A335CD /* Vector.swift */; };
+		01CA36A41E7F7BE000A335CD /* FocusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CA36A21E7F7BE000A335CD /* FocusView.swift */; };
+		01CA36A51E7F7BE000A335CD /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CA36A31E7F7BE000A335CD /* ScannerViewController.swift */; };
+		01CA36AC1E7F80A900A335CD /* OCR-Training.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CA36A71E7F80A900A335CD /* OCR-Training.swift */; };
+		01CA36AD1E7F80A900A335CD /* UnionFind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CA36A91E7F80A900A335CD /* UnionFind.swift */; };
+		01CA36AE1E7F80A900A335CD /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CA36AB1E7F80A900A335CD /* Utils.swift */; };
+		01CA36B01E7F841400A335CD /* SwiftOCR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CA36AF1E7F841400A335CD /* SwiftOCR.swift */; };
 		0A92623E1D640FF200FDC253 /* ChineseIDCardOCR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9262331D640FF200FDC253 /* ChineseIDCardOCR.framework */; };
 		0A9262581D64103C00FDC253 /* RecognizeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A92624E1D64103800FDC253 /* RecognizeTests.swift */; };
 		0A9263171D641DB700FDC253 /* idbackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A9263101D641DB700FDC253 /* idbackground.png */; };
@@ -15,19 +28,7 @@
 		0A92635C1D6446B700FDC253 /* ChineseIDCardOCR.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0A92635B1D6446B700FDC253 /* ChineseIDCardOCR.bundle */; };
 		0A9263661D64496600FDC253 /* 130121197903270035.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A9263611D6447D300FDC253 /* 130121197903270035.png */; };
 		0A9263E91D64628000FDC253 /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9263871D64612300FDC253 /* GPUImage.framework */; };
-		0A9264101D6464CB00FDC253 /* FFNN+Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9264001D6464CB00FDC253 /* FFNN+Storage.swift */; };
-		0A9264111D6464CB00FDC253 /* FFNN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9264011D6464CB00FDC253 /* FFNN.swift */; };
-		0A9264121D6464CB00FDC253 /* FocusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9264021D6464CB00FDC253 /* FocusView.swift */; };
 		0A9264131D6464CB00FDC253 /* IDCardOCR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9264031D6464CB00FDC253 /* IDCardOCR.swift */; };
-		0A9264151D6464CB00FDC253 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9264051D6464CB00FDC253 /* Matrix.swift */; };
-		0A9264161D6464CB00FDC253 /* OCR-Training.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9264061D6464CB00FDC253 /* OCR-Training.swift */; };
-		0A9264171D6464CB00FDC253 /* Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9264071D6464CB00FDC253 /* Operations.swift */; };
-		0A9264181D6464CB00FDC253 /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9264081D6464CB00FDC253 /* Random.swift */; };
-		0A92641A1D6464CB00FDC253 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A92640A1D6464CB00FDC253 /* ScannerViewController.swift */; };
-		0A92641B1D6464CB00FDC253 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A92640B1D6464CB00FDC253 /* Storage.swift */; };
-		0A92641C1D6464CB00FDC253 /* UnionFind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A92640C1D6464CB00FDC253 /* UnionFind.swift */; };
-		0A92641D1D6464CB00FDC253 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A92640D1D6464CB00FDC253 /* Utils.swift */; };
-		0A92641E1D6464CB00FDC253 /* Vector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A92640E1D6464CB00FDC253 /* Vector.swift */; };
 		0A9264291D6467CC00FDC253 /* ChineseIDCardOCR.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A9263FF1D6464CB00FDC253 /* ChineseIDCardOCR.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
@@ -56,7 +57,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0A2CD0C91D66BD3300FF9B71 /* Test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Test.png; path = ../../../../Desktop/Test.png; sourceTree = "<group>"; };
+		01CA36911E7F7B0C00A335CD /* FFNN+Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FFNN+Storage.swift"; sourceTree = "<group>"; };
+		01CA36921E7F7B0C00A335CD /* FFNN.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFNN.swift; sourceTree = "<group>"; };
+		01CA36931E7F7B0C00A335CD /* Matrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
+		01CA36941E7F7B0C00A335CD /* Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operations.swift; sourceTree = "<group>"; };
+		01CA36951E7F7B0C00A335CD /* Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Random.swift; sourceTree = "<group>"; };
+		01CA36961E7F7B0C00A335CD /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		01CA36971E7F7B0C00A335CD /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		01CA36981E7F7B0C00A335CD /* Vector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector.swift; sourceTree = "<group>"; };
+		01CA36A21E7F7BE000A335CD /* FocusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FocusView.swift; sourceTree = "<group>"; };
+		01CA36A31E7F7BE000A335CD /* ScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
+		01CA36A71E7F80A900A335CD /* OCR-Training.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OCR-Training.swift"; sourceTree = "<group>"; };
+		01CA36A91E7F80A900A335CD /* UnionFind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnionFind.swift; sourceTree = "<group>"; };
+		01CA36AB1E7F80A900A335CD /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		01CA36AF1E7F841400A335CD /* SwiftOCR.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftOCR.swift; sourceTree = "<group>"; };
 		0A9262331D640FF200FDC253 /* ChineseIDCardOCR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ChineseIDCardOCR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A92623D1D640FF200FDC253 /* ChineseIDCardOCRTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChineseIDCardOCRTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A92624E1D64103800FDC253 /* RecognizeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecognizeTests.swift; sourceTree = "<group>"; };
@@ -67,20 +81,8 @@
 		0A9263611D6447D300FDC253 /* 130121197903270035.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 130121197903270035.png; sourceTree = "<group>"; };
 		0A92637B1D64612300FDC253 /* GPUImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GPUImage.xcodeproj; path = GPUImage/framework/GPUImage.xcodeproj; sourceTree = "<group>"; };
 		0A9263FF1D6464CB00FDC253 /* ChineseIDCardOCR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChineseIDCardOCR.h; sourceTree = "<group>"; };
-		0A9264001D6464CB00FDC253 /* FFNN+Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FFNN+Storage.swift"; sourceTree = "<group>"; };
-		0A9264011D6464CB00FDC253 /* FFNN.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFNN.swift; sourceTree = "<group>"; };
-		0A9264021D6464CB00FDC253 /* FocusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FocusView.swift; sourceTree = "<group>"; };
 		0A9264031D6464CB00FDC253 /* IDCardOCR.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IDCardOCR.swift; sourceTree = "<group>"; };
 		0A9264041D6464CB00FDC253 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0A9264051D6464CB00FDC253 /* Matrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
-		0A9264061D6464CB00FDC253 /* OCR-Training.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OCR-Training.swift"; sourceTree = "<group>"; };
-		0A9264071D6464CB00FDC253 /* Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operations.swift; sourceTree = "<group>"; };
-		0A9264081D6464CB00FDC253 /* Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Random.swift; sourceTree = "<group>"; };
-		0A92640A1D6464CB00FDC253 /* ScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
-		0A92640B1D6464CB00FDC253 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
-		0A92640C1D6464CB00FDC253 /* UnionFind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnionFind.swift; sourceTree = "<group>"; };
-		0A92640D1D6464CB00FDC253 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		0A92640E1D6464CB00FDC253 /* Vector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,54 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		01CA36901E7F7B0C00A335CD /* FFNN */ = {
+			isa = PBXGroup;
+			children = (
+				01CA36911E7F7B0C00A335CD /* FFNN+Storage.swift */,
+				01CA36921E7F7B0C00A335CD /* FFNN.swift */,
+				01CA36931E7F7B0C00A335CD /* Matrix.swift */,
+				01CA36941E7F7B0C00A335CD /* Operations.swift */,
+				01CA36951E7F7B0C00A335CD /* Random.swift */,
+				01CA36961E7F7B0C00A335CD /* README.md */,
+				01CA36971E7F7B0C00A335CD /* Storage.swift */,
+				01CA36981E7F7B0C00A335CD /* Vector.swift */,
+			);
+			path = FFNN;
+			sourceTree = "<group>";
+		};
+		01CA36A11E7F7BE000A335CD /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				01CA36A21E7F7BE000A335CD /* FocusView.swift */,
+				01CA36A31E7F7BE000A335CD /* ScannerViewController.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		01CA36A61E7F80A900A335CD /* Training */ = {
+			isa = PBXGroup;
+			children = (
+				01CA36A71E7F80A900A335CD /* OCR-Training.swift */,
+			);
+			path = Training;
+			sourceTree = "<group>";
+		};
+		01CA36A81E7F80A900A335CD /* UnionFind */ = {
+			isa = PBXGroup;
+			children = (
+				01CA36A91E7F80A900A335CD /* UnionFind.swift */,
+			);
+			path = UnionFind;
+			sourceTree = "<group>";
+		};
+		01CA36AA1E7F80A900A335CD /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				01CA36AB1E7F80A900A335CD /* Utils.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		0A9262291D640FF100FDC253 = {
 			isa = PBXGroup;
 			children = (
@@ -126,7 +176,6 @@
 		0A92624D1D64103800FDC253 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				0A2CD0C91D66BD3300FF9B71 /* Test.png */,
 				0A9263611D6447D300FDC253 /* 130121197903270035.png */,
 				0A92624E1D64103800FDC253 /* RecognizeTests.swift */,
 				0A92624F1D64103800FDC253 /* Info.plist */,
@@ -156,39 +205,17 @@
 		0A9263FE1D6464CB00FDC253 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				01CA36AF1E7F841400A335CD /* SwiftOCR.swift */,
 				0A9264031D6464CB00FDC253 /* IDCardOCR.swift */,
-				0A9264061D6464CB00FDC253 /* OCR-Training.swift */,
-				0A92640C1D6464CB00FDC253 /* UnionFind.swift */,
-				0A92640D1D6464CB00FDC253 /* Utils.swift */,
-				0A9264201D6464EC00FDC253 /* UI */,
-				0A92641F1D6464D900FDC253 /* FFNN */,
+				01CA36A61E7F80A900A335CD /* Training */,
+				01CA36A81E7F80A900A335CD /* UnionFind */,
+				01CA36AA1E7F80A900A335CD /* Utils */,
+				01CA36A11E7F7BE000A335CD /* UI */,
+				01CA36901E7F7B0C00A335CD /* FFNN */,
 				0A9263FF1D6464CB00FDC253 /* ChineseIDCardOCR.h */,
 				0A9264041D6464CB00FDC253 /* Info.plist */,
 			);
 			path = Sources;
-			sourceTree = "<group>";
-		};
-		0A92641F1D6464D900FDC253 /* FFNN */ = {
-			isa = PBXGroup;
-			children = (
-				0A9264001D6464CB00FDC253 /* FFNN+Storage.swift */,
-				0A9264011D6464CB00FDC253 /* FFNN.swift */,
-				0A9264051D6464CB00FDC253 /* Matrix.swift */,
-				0A9264071D6464CB00FDC253 /* Operations.swift */,
-				0A9264081D6464CB00FDC253 /* Random.swift */,
-				0A92640B1D6464CB00FDC253 /* Storage.swift */,
-				0A92640E1D6464CB00FDC253 /* Vector.swift */,
-			);
-			name = FFNN;
-			sourceTree = "<group>";
-		};
-		0A9264201D6464EC00FDC253 /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				0A9264021D6464CB00FDC253 /* FocusView.swift */,
-				0A92640A1D6464CB00FDC253 /* ScannerViewController.swift */,
-			);
-			name = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -317,7 +344,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A9263661D64496600FDC253 /* 130121197903270035.png in Resources */,
-				0A2CD0CB1D66BD3800FF9B71 /* Test.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,19 +354,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A9264181D6464CB00FDC253 /* Random.swift in Sources */,
-				0A92641B1D6464CB00FDC253 /* Storage.swift in Sources */,
-				0A9264101D6464CB00FDC253 /* FFNN+Storage.swift in Sources */,
-				0A9264151D6464CB00FDC253 /* Matrix.swift in Sources */,
-				0A92641C1D6464CB00FDC253 /* UnionFind.swift in Sources */,
-				0A92641D1D6464CB00FDC253 /* Utils.swift in Sources */,
-				0A92641A1D6464CB00FDC253 /* ScannerViewController.swift in Sources */,
-				0A9264161D6464CB00FDC253 /* OCR-Training.swift in Sources */,
-				0A9264171D6464CB00FDC253 /* Operations.swift in Sources */,
+				01CA36991E7F7B0C00A335CD /* FFNN+Storage.swift in Sources */,
+				01CA369B1E7F7B0C00A335CD /* Matrix.swift in Sources */,
+				01CA36AC1E7F80A900A335CD /* OCR-Training.swift in Sources */,
+				01CA36AE1E7F80A900A335CD /* Utils.swift in Sources */,
+				01CA369E1E7F7B0C00A335CD /* README.md in Sources */,
+				01CA369A1E7F7B0C00A335CD /* FFNN.swift in Sources */,
+				01CA36A51E7F7BE000A335CD /* ScannerViewController.swift in Sources */,
 				0A9264131D6464CB00FDC253 /* IDCardOCR.swift in Sources */,
-				0A92641E1D6464CB00FDC253 /* Vector.swift in Sources */,
-				0A9264111D6464CB00FDC253 /* FFNN.swift in Sources */,
-				0A9264121D6464CB00FDC253 /* FocusView.swift in Sources */,
+				01CA36A01E7F7B0C00A335CD /* Vector.swift in Sources */,
+				01CA36A41E7F7BE000A335CD /* FocusView.swift in Sources */,
+				01CA36B01E7F841400A335CD /* SwiftOCR.swift in Sources */,
+				01CA369C1E7F7B0C00A335CD /* Operations.swift in Sources */,
+				01CA369D1E7F7B0C00A335CD /* Random.swift in Sources */,
+				01CA36AD1E7F80A900A335CD /* UnionFind.swift in Sources */,
+				01CA369F1E7F7B0C00A335CD /* Storage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

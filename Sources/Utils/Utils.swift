@@ -77,14 +77,15 @@ extension UIImage {
         return UIImage(cgImage: imageRef, scale: scale, orientation: imageOrientation)
     }
 }
-extension Collection where Iterator.Element == [UInt16] {
-    func transpose() -> [[UInt16]] {
-        if self.isEmpty {
-            return [[UInt16]]();
-        }
-        let count = self.first?.count
-        var out = [[UInt16]](repeatElement([UInt16](), count: count!))
-        for outer in self{
+extension Array where Element: Collection, Element.Index == Int, Element.IndexDistance == Int, Element.Iterator.Element: Any {
+    func transpose() -> [[Element.Iterator.Element]] {
+        if self.isEmpty { return [] }
+        
+        typealias InnerElement = Element.Iterator.Element
+        
+        let count = self[0].count
+        var out = [[InnerElement]](repeating: [InnerElement](), count: count)
+        for outer in self {
             for (index, inner) in outer.enumerated() {
                 out[index].append(inner)
             }

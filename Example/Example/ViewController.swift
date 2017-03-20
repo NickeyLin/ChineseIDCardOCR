@@ -56,7 +56,7 @@ class ViewController: UIViewController {
         self.imageView.image = image //cropNameImage(image)
         self.numberLabel.text = "正在识别 ... ..."
 
-        ocr.recognize(image) {
+        ocr.recognizeIDCardNo(image) {
             let number = $0
             DispatchQueue.main.async {
                 self.numberLabel.text = number

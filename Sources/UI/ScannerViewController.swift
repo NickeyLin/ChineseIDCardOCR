@@ -240,7 +240,7 @@ open class ScannerViewController: UIViewController {
 //                self.imageView.sizeToFit()
 //                self.view.addSubview(self.imageView);
                 
-                self.ocr?.recognize(croppedImage) {
+                self.ocr?.recognizeIDCardNo(croppedImage) {
                     debugPrint($0)
                     let result = $0
                     if result.lengthOfBytes(using: String.Encoding.utf8) == 18 {
